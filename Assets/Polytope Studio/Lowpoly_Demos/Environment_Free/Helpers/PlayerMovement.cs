@@ -13,9 +13,9 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
+    public Animator playerAnimator;
 
     Vector3 velocity;
-    public Animator playerAnimator;
     bool isGrounded;
     void Update()
     {
@@ -50,5 +50,9 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+
+        if(z!=0){
+            playerAnimator.SetBool("Running",true);
+        }else playerAnimator.SetBool("Running",false);
     }
 }
